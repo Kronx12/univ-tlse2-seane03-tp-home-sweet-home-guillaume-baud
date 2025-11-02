@@ -4,20 +4,8 @@ import (
 	. "home_sweet_home/peterlib"
 )
 
-func drawWalls(sideLength int) {
-	Color("#0070c0")
-	Down()
-	South()
-	Forward(sideLength)
-	East()
-	Forward(sideLength)
-	North()
-	Forward(sideLength)
-	Up()
-}
-
 func drawRooftop(sideLength int) {
-	Color("#ff0000")
+	Color("red")
 	Down()
 	Pivote(30)
 	Forward(sideLength)
@@ -28,13 +16,35 @@ func drawRooftop(sideLength int) {
 	Up()
 }
 
-func drawHouses(houseCount, sideLength int) {
-	for range houseCount {
-		drawRooftop(sideLength)
-		drawWalls(sideLength)
-		East()
-		Forward(1)
-		North()
+func drawWalls(sideLength int) {
+	Color("blue")
+	Down()
+	Left()
+	Forward(sideLength)
+	Left()
+	Forward(sideLength)
+	Left()
+	Forward(sideLength)
+	Up()
+}
+
+func drawHouse(sideLength int) {
+	drawRooftop(sideLength)
+	drawWalls(sideLength)
+}
+
+func preparePosition() {
+	East()
+	Forward(1)
+	North()
+}
+
+func drawHouses(houseCount int, sideLength int) {
+	houseIndex := 0
+	for houseIndex < houseCount {
+		drawHouse(sideLength)
+		preparePosition()
+		houseIndex += 1
 	}
 }
 
